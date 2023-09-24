@@ -6,7 +6,7 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/stakingtaxes/stakingtaxes.github.io',
   },
-  docsRepositoryBase: 'https://github.com/stakingtaxes/stakingtaxes.github.io',
+  docsRepositoryBase: 'https://github.com/stakingtaxes/stakingtaxes.github.io/tree/main',
   footer: {
     component: null,
   },
