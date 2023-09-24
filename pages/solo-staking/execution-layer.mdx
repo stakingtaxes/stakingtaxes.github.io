@@ -1,0 +1,16 @@
+# Execution Layer Rewards
+
+Source: [https://ethstaker.gitbook.io/ethstaker-knowledge-base/rewards/chain-rewards](https://ethstaker.gitbook.io/ethstaker-knowledge-base/rewards/chain-rewards)
+
+| Type          | Layer     | Frequency                                                | Amount                                        |
+| ------------- | --------- | -------------------------------------------------------- | --------------------------------------------- |
+| Priority Fees | Execution | Included in every Block Proposal containing transactions | Typically 0.01 to 0.1 ETH; very rarely 1+ ETH |
+| MEV Rewards   | Execution | Also included in Block Proposals when using MEV-boost    | Typically 0.01 to 0.1 ETH; very rarely 1+ ETH |
+
+## How rewards on the Execution Layer can be tracked
+
+While Consensus Layer rewards were only withdrawable after the Shapella upgrade, Priority Fees and MEV Rewards are sent to an Execution Layer address and have been available for spending immediately.
+
+Tracking MEV fees is tricky as a third party. In a MEV block, a block builder replaces the `fee_recipient` from the validator’s `suggested_fee_recipient` to the builder’s address. Then, in the last transaction of the block, the builder does a plain ETH transfer to the original `suggested_fee_recipient`. The original `suggested_fee_recipient` data is not on-chain.
+
+As such, the only way to capture the track the accurate Execution Layer income number as a third party is if you know which exact address Execution Layer rewards are being sent to for that specific validator.

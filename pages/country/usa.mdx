@@ -1,0 +1,67 @@
+# Taxation (United States)
+
+## ETH Validator Remuneration
+
+| Layer     | Type            | Paid to                 |
+| --------- | --------------- | ----------------------- |
+| Consensus | Attestation     | Withdrawal address      |
+| Consensus | Block Proposal  | Withdrawal address      |
+| Consensus | Sync Committee  | Withdrawal address      |
+| Consensus | Slashing Reward | Withdrawal address      |
+| Execution | MEV Rewards     | Suggested Fee Recipient |
+| Execution | Priority Fees   | Suggested Fee Recipient |
+
+## Consensus Layer rewards
+
+Consensus Layer rewards are subject to **tax at ordinary income rates at their fair market value when received**.
+
+[https://www.irs.gov/pub/irs-drop/rr-23-14.pdf](https://www.irs.gov/pub/irs-drop/rr-23-14.pdf)
+
+\*Withdrawals of Consensus Layer rewards were only enabled on 12 Apr 2023 despite the Beacon Chain being shipped in 2020.
+
+### Tracking Tools
+
+https://beaconcha.in/rewards
+
+https://ethstaker.tax/
+
+These 2 tools track changes in daily balances. Alternatively, you can also track using deposits to the withdrawal address as they happen every 3-4 days.
+
+## Execution Layer rewards
+
+Execution Layer rewards are subject to **tax at ordinary income rates at fair market value when received**. Unlike Consensus Layer rewards which could only be withdrawn on 12 Apr 2023, Execution Layer rewards have always been available for spending immediately when received.
+
+### Tracking Tools
+
+The only way to capture the track the accurate Execution Layer income number as a third party is if you know which exact address Execution Layer rewards are being sent to for that specific validator. You will need to obtain an accurate summary of all Execution Layer rewards and which addresses they have been sent to.
+
+### Coinbase’s tax treatment of staking rewards
+
+Coinbase’s tax position is that staking rewards were not considered taxable prior to 12 Apr 2023 since stakers were unable to sell or realize earned rewards. On the date when fulfillment of unstaking requests began (slightly after 12 Apr 2023), Coinbase would sum up all prior rewards earned so far as income, using the market price of ETH as of the date.
+
+Source: [https://help.coinbase.com/en/coinbase/taxes/general-information/eth-taxes](https://help.coinbase.com/en/coinbase/taxes/general-information/eth-taxes)
+
+## Accounting method FIFO, LIFO, HIFO or specific ID
+
+- As a rule, one should stick with the accounting method they have chosen.
+- For those that were early to staking, LIFO or HIFO would be the preferred method to minimize capital gains tax.
+
+This [piece](https://www.forbes.com/sites/shehanchandrasekera/2020/09/17/what-crypto-taxpayers-need-to-know-about-fifo-lifo-hifo-specific-id/?sh=6399528936aa) by Shehan Chandrasekera covers the various accounting methods
+
+- Specific ID involves tracking each individual lot of an asset so you have the cost basis of each individual token.
+- According to the crypto tax guidance issued by the IRS ([A39](https://www.irs.gov/individuals/international-taxpayers/frequently-asked-questions-on-virtual-currency-transactions)), taxpayers can use specific identification to calculate the cost basis of each unit of crypto asset they are disposing of. Specific ID means that each time you dispose of a crypto asset, you are specifically identifying which specific unit you are selling. In order to use this method, you must keep detailed records of all the following information:
+  - the date and time each unit was acquired
+  - your basis and the fair market value of each unit at the time it was acquired
+  - the date and time each unit was sold, exchanged, or otherwise disposed of
+  - the fair market value of each unit when sold, exchanged, or disposed of, and
+  - the amount of money or the value of property received for each unit. the fair market value of each unit when sold, exchanged, or disposed of, and the amount of money or the value of property received for each unit.
+
+## 2022 taxes relating to ETH staking
+
+Report only Execution Layer income following The Merge on 15 September 2022. This should be reported as income when received.
+
+## 2023 taxes relating to ETH staking
+
+- Execution Layer income continues to be reported as income when received.
+
+- Report all Consensus Layer rewards leading up to 12 April 2023 as one-time income. Subsequently, report Consensus Layer rewards daily or withdrawals every 3-4 days when received.

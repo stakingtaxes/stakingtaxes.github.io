@@ -1,0 +1,91 @@
+# stETH **[Lido Finance](https://lido.fi/)**
+
+## What is a rebasing token?
+
+Rebase tokens are a type of token that adjusts their supply to maintain price stability. The circulating token supply adjusts (increases or decreases) automatically according to a token’s price fluctuations.
+
+## What is stETH
+
+Source: [https://blog.lido.fi/steth-the-mechanics-of-steth/](https://blog.lido.fi/steth-the-mechanics-of-steth/) and [https://docs.lido.fi/contracts/lido/#rebasing](https://docs.lido.fi/contracts/lido/#rebasing)
+
+Users who stake their ETH into the ETH staking contract via Lido will receive a liquid staking token stETH. If you stake 1 ETH with Lido, you receive 1 stETH in return.
+
+stETH is a rebasing token which rebases daily to reflect staking rewards earned everyday.
+
+Token balances are updated **once a day at 12pm UTC** when the oracle reports changes in staked ETH deposits and changes in ETH rewards from users who stake via Lido. As the rewards are embodied through a balance rebase, users who hold stETH will not see a transaction sent to their wallet. Instead, users will see their stETH balance automatically change without an accompanying transaction taking place.
+
+This is a much more efficient way for rewards to be distributed to the many holders of stETH without directly transferring rewards to each holder.
+
+Rebase tokens likely create daily taxable events though there has been no official guidance from the IRS yet.
+
+### How to track stETH rewards
+
+Rewards can be tracked using
+
+[https://stake.lido.fi/rewards](https://stake.lido.fi/rewards)
+
+### Is converting ETH to stETH taxable?
+
+Source: [https://www.cointracker.io/blog/ethereum-2-tax-guide](https://www.cointracker.io/blog/ethereum-2-tax-guide)
+
+There is no guidance yet but it is likely that the conversion from ETH to stETH is taxable and capital gains would also apply.
+
+Cryptocurrencies are treated as “property” per [IRS Notice 2014-21](https://www.irs.gov/pub/irs-drop/n-14-21.pdf). Consequently, a taxable event occurs each time you *dispose* of a coin. Disposition events include selling your coin for cash and also exchanging one coin with another one.
+
+To have a disposition event, **both** of the following criteria must be met ([Reg §1.1001-1](https://www.law.cornell.edu/cfr/text/26/1.1001-1)):
+
+- There must be an exchange and,
+- Property received must differ materially from the property given up (Material difference requirement)
+
+When you convert ETH to stETH, it is reasonable to think that you have transferred the tax ownership of your ETH to Lido triggering the Exchange requirement.
+
+stETH seems materially different from the ETH you had. It allows you to earn liquid staking rewards as opposed to regular ETH. Lastly, stETH price is not perfectly pegged to ETH which further supports the fact that they are materially different assets.
+
+## wstETH
+
+wstETH is **wrapped stETH**. Some DeFi platforms such as Uniswap are not designed to work with rebasing tokens like stETH hence wstETH was introduced.
+
+Source: [https://help.lido.fi/en/articles/5231836-what-is-wrapped-steth-wsteth](https://help.lido.fi/en/articles/5231836-what-is-wrapped-steth-wsteth)
+
+Lido lets you "wrap" your stETH into wstETH to keep your balance of stETH fixed. Instead of updating daily, wstETH uses an underlying share system to reflect your staking rewards.
+
+import { Callout } from "nextra/components";
+
+<Callout type="info">
+  <b>Example:</b>
+  <ul style={{ listStyleType: "circle" }}>
+    <li>You wrap 100 stETH to 99.87 wstETH.</li>
+    <li>You continue to get rewards on your wstETH.</li>
+    <li>When you unwrap your wstETH, you receive 101 stETH.</li>
+  </ul>
+</Callout>
+
+### What happens when you wrap stETH into wstETH
+
+stETH rewards can be tracked here [https://stake.lido.fi/rewards](https://stake.lido.fi/rewards)
+
+However, once you wrap stETH into wstETH, you won’t be able to see the reward history.
+
+If you unwrap back to stETH, you can see the rewards going forward although rewards during the wrapped period will not be updated.
+
+<Callout type="info">
+  Assuming you wrap on 1 July 2023 and then unwrap on 1 August 2023, the reward
+  history will not include rewards between 1 July - 1 August 2023. You will need
+  to record rewards between 1 July - 1 August 2023 separately.
+</Callout>
+
+### stETH vs wstETH tax treatment
+
+If you hold stETH, it's likely you'll need to pay **income taxes** based on the fair market value of your rewards received which are reflected in your changing token balance everyday.
+
+However, in the case of wstETH, since it uses an underlying share system to reflect your staking rewards instead of rebasing, you don’t have rewards daily. Instead the value of the token increases.
+
+This brings about an interesting possibility - **could you then possibly turn income taxes into capital gains taxes by holding wstETH instead of stETH?**
+
+This raises many concerns, as explained in these pieces by Jason Schwartz
+
+[The Latest DeFi Alpha Is Tax-Optimized Staking](https://www.friedfrank.com/uploads/documents/cc68fd4ecd02c64da95a5c0752355f73.pdf)
+
+[Squaring the Circle: Smart Contracts and DAOs as Tax Entities](https://www.friedfrank.com/uploads/siteFiles/Publications/Decentralized%20Autonomous%20Organizations%20_%20Decentralized%20Law.pdf)
+
+[Analysis: Reading the Tea Leaves - What Enforcement Actions Mean for the U.S. Taxation of Crypto](https://www.findknowdo.com/news/02/15/2023/analysis-reading-tea-leaves-what-enforcement-actions-mean-u.s.-taxation-crypto)

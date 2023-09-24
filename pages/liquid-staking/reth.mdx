@@ -1,0 +1,115 @@
+# rETH **[Rocket Pool](https://rocketpool.net/)**
+
+rETH is a liquid staking token issued by Rocket Pool. Similar to wstETH, the rETH token does not rebase. This means that if you hold rETH, the number of tokens in your wallet will remain constant but they appreciate in value over time.
+
+Similar to holding wstETH, it is unclear if staking rewards can be classified as capital gains only when sold, as opposed to being taxed at ordinary income rates at fair market value when received.
+
+## Rocket Pool node operators
+
+If you have more ETH you might want to become a Rocket Pool node operator to enjoy higher staking yields than a regular rETH holder.
+
+Source: [https://docs.rocketpool.net/guides/staking/overview.html](https://docs.rocketpool.net/guides/staking/overview.html)
+
+Unlike solo stakers which are required to put 32 ETH up for deposit to create a new validator, Rocket Pool nodes only need to deposit 8 or 16 ETH per validator (the "bond"). This will be coupled with 24 or 16 ETH (the "borrowed") from the staking pool (which "normal" stakers deposited in exchange for rETH) to create a new validator. This new validator is called a **minipool**.
+
+To the Beacon chain, a minipool looks exactly the same as a normal validator. It has the same responsibilities, same rules it must follow, same rewards, and so on. The only difference is in how the minipool was created on the ETH1 chain, and how withdrawals work when the node operator decides to voluntarily exit the minipool. All of the creation, withdrawing, and rewards delegation is handled by Rocket Pool's smart contracts on the Ethereum chain.
+
+A single Rocket Pool node can run many minipools.
+
+A minipool's upfront cost is either 16 ETH, plus at least 1.6 ETH worth of the RPL token, or 8 ETH plus at least 2.4 ETH worth of the RPL token. The supplemental RPL collateral acts as supplemental insurance against particularly egregious slashing incidents, and lets node operators participate in Rocket Pool's DAO.
+
+Node operators are responsible for:
+
+- Setting up a computer (either physical or virtual)
+- Configuring it correctly
+- Installing Rocket Pool on it and setting up minipools to perform validation
+- Securing it, both from outside and inside threats
+- Maintaining it for the life of their validators
+
+### Benefits of running a Rocket Pool node:
+
+- You earn your portion of each validator's ETH rewards, plus commission.
+  - For an 8 ETH-bonded minipool, this comes to **35.5%** of the validator's rewards (an extra **10.5%** over solo staking).
+  - For a 16 ETH-bonded minipool, this comes to **57.5%** of the validator's rewards (an extra **7.5%** over solo staking).
+- You earn interest on the RPL you stake as supplemental insurance.
+  - At the end of a period (every 28 days), there's a snapshot of your RPL.
+  - You can earn yield on RPL **up to 150%** of the value of your total bonded ETH.
+  - To be eligible for these rewards, you must have **at least 10%** of the value of your **total borrowed ETH** to earn RPL rewards.
+- You will be able to participate in the DAO and get to vote on changes to Rocket Pool's protocol or settings.
+
+In light of gaining access to these benefits, as a node operator you are responsible for your own performance. If your node performs poorly and you actually end up losing ETH by the time you decide to exit your minipool, all of the lost ETH is coming out of your share.
+
+import { Callout } from "nextra/components";
+
+<Callout type="info">
+  If you exit with a balance of 30 ETH, then your minipool lost 2 ETH from its
+  initial 32 ETH deposit. You will receive 14 or 6 ETH (depending on your bond
+  size), and 24 or 16 ETH will be returned to the staking pool.
+</Callout>
+
+## Rocketpool Node Remuneration and Distribution
+
+At regular intervals, Rocket Pool will flag a checkpoint on the network. Currently, checkpoints occur **every 28 days**.
+
+### 1. Consensus Layer Skimmed Rewards
+
+Source: [https://docs.rocketpool.net/guides/node/skimming.html](https://docs.rocketpool.net/guides/node/skimming.html)
+
+The ETH rewards you receive for running a validator for Ethereum are routinely sent to your minipools in a process referred to as **"skimming"**. The frequency of skims depends on the number of active validators on the Beacon Chain. At the time of writing the number of validators is around 500,000 which results in a skim occurring approximately every 2-3 days.
+
+Skimmed rewards will accrue in each of your minipools until node operators "distribute" them. This process distributes the skimmed rewards betweenthe node operator, and rETH holders based on your commission rate and ratio of supplied and provided ETH.
+
+There is an Automatic Distribution and Manual Distribution option for distributing rewards.
+
+<Callout type="info">
+  To track how much you have in skimmed rewards, run `rocketpool minipool distribute-balance`which will tell you how much goes to you.
+
+</Callout>
+
+There is no official guidance on when rewards should be booked as income.
+
+This could be
+
+- each time the Beacon Chain sends rewards to the minipool contract every 2-3 days or
+
+- when each 28 day period ends and rewards are claimable
+
+You can also use the same tools and calculate your share of rewards
+
+- [https://beaconcha.in/rewards](https://beaconcha.in/rewards)
+
+- [https://ethstaker.tax/](https://ethstaker.tax/)
+
+### 2. Execution Layer Rewards and RPL rewards
+
+Source: [https://docs.rocketpool.net/guides/node/rewards.html](https://docs.rocketpool.net/guides/node/rewards.html)
+
+As a Rocket Pool node operator, you are also entitled to regular rewards that will be provided in the form of the RPL token and (if you are opted into the Smoothing Pool) some ETH as well.
+
+To that end, the Smartnode will automatically set your node's `fee recipient` to either of these special contracts:
+
+- Your node's own personal **Fee Distributor** (the default)
+- The **Smoothing Pool** (opt-in)
+
+In brief, the **Fee Distributor** is a unique contract attached to your node that collects and fairly splits your priority fees between you and the rETH stakers. It's like your own personal vault for priority fees. Anyone (including you) can distribute its balance at any time to ensure that the rewards are always available to rETH stakers.
+
+The **Smoothing Pool** is a special opt-in contract that allows all participating node operators to aggregate and pool their priority fees together, and distributes them evenly among the participants during each Rocket Pool rewards interval (currently every 28 days) and the rETH pool stakers. This is a very compelling feature for node operators that don't want to worry about the luck factor involved in getting block proposals with high priority fees, and would rather have a nice, regular, consistent set of monthly earnings.
+
+| Layer     | Type            | Paid to                           |
+| --------- | --------------- | --------------------------------- |
+| Consensus | Attestation     | Withdrawal address                |
+| Consensus | Block Proposal  | Withdrawal address                |
+| Consensus | Sync Committee  | Withdrawal address                |
+| Consensus | Slashing Reward | Withdrawal address                |
+| Execution | MEV Rewards     | Fee Distributor or Smoothing Pool |
+| Execution | Priority Fees   | Fee Distributor or Smoothing Pool |
+
+<Callout type="info">
+  To track how much you have in Execution Layer Rewards and RPL, check your Fee Distributor or Smoothing Pool contract.
+
+</Callout>
+
+**Tax on RPL rewards**
+
+- Book RPL as income upon receipt
+- When you sell your RPL you incur capital gains or losses

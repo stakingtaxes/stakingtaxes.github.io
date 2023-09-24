@@ -1,0 +1,40 @@
+# Consensus Layer Rewards
+
+Source: https://ethstaker.gitbook.io/ethstaker-knowledge-base/rewards/chain-rewards
+
+| Type            | Layer     | Frequency                                     | Amount           |
+| --------------- | --------- | --------------------------------------------- | ---------------- |
+| Attestation     | Consensus | Once per Epoch (every 6.4 minutes on average) | 0.000014 ETH\*   |
+| Block Proposal  | Consensus | Every 2 months on average                     | 0.02403 ETH\*    |
+| Sync Committee  | Consensus | Every 2 years on average\*\*                  | 0.11008 ETH\*    |
+| Slashing Reward | Consensus | Very rarely included in Block Proposals       | Up to 0.0625 ETH |
+
+\*Varies based on the total number of validators in the network. Estimate shown approximated for 435,000 active validators.
+
+\*\*These are subject to randomness; there can be "dry spells" multiple times longer than the average without being given one
+
+Validators are penalized for small amounts of ETH if they are offline and fail to perform their assigned duties. This is called **[leaking](https://docs.ethstaker.cc/ethstaker-knowledge-base/staking-glossary#inactivity-leak)**. They will be penalized at a rate slightly lower than the rewards for the same period of time.
+
+If a validator violates one of the core rules of the Beacon chain and appears to be attacking the network, it may get **[slashed](https://docs.ethstaker.cc/ethstaker-knowledge-base/staking-glossary#slashable-offenses)**. Slashing is a forceful exit of the validator without the validator’s permission, accompanied by a relatively large fine that removes some of the validator's ETH balance.
+
+Block proposers will receive a slashing reward if they include evidence of slashable offenses in their block.
+
+Note: Slashing rewards are not newly-issued ETH and is a very rare occurrence.
+
+## How rewards on the Consensus Layer can be tracked
+
+Consensus Layer rewards come from new issuance of ETH.
+
+Rewards are accrued on each validator’s account. These can be tracked by tracking changes in validator balance every 24 hours. This can be easily verified even as an independent third party.
+
+Prior to the Shapella upgrade, validators could see their balance increase but withdrawals were not available until the upgrade happened.
+
+Currently, while rewards are constantly being accrued on each validator’s account, withdrawals are only available every 3-4 days. If the validator has set a withdrawal address, rewards can be tracked through deposits to the withdrawal address every 3-4 days.
+
+## Tools to track Consensus Layer rewards
+
+https://beaconcha.in/rewards
+
+https://ethstaker.tax/
+
+These 2 tools track changes in daily balances. Alternatively, you can also track using deposits to the withdrawal address as they happen every 3-4 days.
